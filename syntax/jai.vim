@@ -55,6 +55,7 @@ syntax match jaiTemplate "$\<\w\+\>"
 syntax match jaiCommentNote "@\<\w\+\>" contained display
 syntax match jaiLineComment "//.*" contains=jaiCommentNote
 syntax region jaiBlockComment start=/\v\/\*/ end=/\v\*\// contains=jaiBlockComment, jaiCommentNote
+setlocal commentstring=//\ %s
 
 highlight link jaiIt Keyword
 highlight link jaiUsing Keyword
