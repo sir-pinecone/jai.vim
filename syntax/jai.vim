@@ -1,6 +1,22 @@
 if exists("b:current_syntax")
-  finish
+   finish
 endif
+
+function! FindJaiModule(filename)
+	if !exists('g:jai_modules')
+		return a:filename . '.jai'
+	endif
+	let jai_module=substitute(a:filename,'^',g:jai_modules,'g')
+	if isdirectory(jai_module)
+		return jai_module . '/module.jai'
+	else
+		return jai_module . '.jai'
+	endif
+endfunction
+
+setlocal suffixesadd+=jai
+set includeexpr=FindJaiModule(v:fname)
+setlocal commentstring=//\ %s
 
 syntax keyword jaiUsing using
 syntax keyword jaiNew new
@@ -55,7 +71,6 @@ syntax match jaiTemplate "$\<\w\+\>"
 syntax match jaiCommentNote "@\<\w\+\>" contained display
 syntax match jaiLineComment "//.*" contains=jaiCommentNote
 syntax region jaiBlockComment start=/\v\/\*/ end=/\v\*\// contains=jaiBlockComment, jaiCommentNote
-setlocal commentstring=//\ %s
 
 highlight link jaiIt Keyword
 highlight link jaiUsing Keyword
