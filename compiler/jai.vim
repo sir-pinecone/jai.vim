@@ -21,7 +21,7 @@ function! FindJaiEntrypoint(filename)
 	endif
 endfunction
 
-let &l:makeprg="jaic -no_color " . FindJaiEntrypoint(expand('%'))
+let &l:makeprg="jaic_vim -no_color " . FindJaiEntrypoint(expand('%'))
 
 let s:cpo_save = &cpo
 set cpo-=C
