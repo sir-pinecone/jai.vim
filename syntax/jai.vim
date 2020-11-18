@@ -52,10 +52,10 @@ syntax region jaiString start=/\v"/ skip=/\v\\./ end=/\v"/
 
 syntax keyword jaiAutoCast xx
 
-syntax match jaiFunction "\v<\w*>(\s*:[:=]\s*\(.*\)[^{]*\{)@="
+syntax match jaiFunction "\v<\w+>(\s*:[:=]\s*\(.*\)[^{]*\{)@="
 
-syntax match jaiConstantDeclaration "\v<\w+>(, <\w+>)*(\s*::)@=" display
-syntax match jaiVariableDeclaration "\v<\w+>(, <\w+>)*(\s*:[^:])@=" display
+syntax match jaiConstantDeclaration "\v<\w+>(, <\w+>)*(\s*::\s*[^( \t])@=" display
+syntax match jaiVariableDeclaration "\v<\w+>(, <\w+>)*(\s*:[^:]\s*[^( \t])@=" display
 syntax match jaiTagNote "@\<\w\+\>" display
 
 syntax match jaiClass "\v<[A-Z]\w+>" display
