@@ -52,9 +52,10 @@ syntax region jaiString start=/\v"/ skip=/\v\\./ end=/\v"/
 
 syntax keyword jaiAutoCast xx
 
-syntax match jaiFunction "\v<\w*>(\s*::\s*)@="
-syntax match jaiDynamicFunction "\v<\w*(\s*:\=\s*\(.*\))@="
+syntax match jaiFunction "\v<\w*>(\s*:[:=]\s*\(.*\)[^{]*\{)@="
 
+syntax match jaiConstantDeclaration "\v<\w+>(, <\w+>)*(\s*::)@=" display
+syntax match jaiVariableDeclaration "\v<\w+>(, <\w+>)*(\s*:[^:])@=" display
 syntax match jaiTagNote "@\<\w\+\>" display
 
 syntax match jaiClass "\v<[A-Z]\w+>" display
@@ -64,13 +65,16 @@ syntax match jaiInteger "\<\d\+\>" display
 syntax match jaiFloat "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\%([eE][+-]\=[0-9_]\+\)\=" display
 syntax match jaiHex "\<0x[0-9A-Fa-f]\+\>" display
 
-syntax match jaiMacro "#\<\w\+\>" display
+syntax match jaiDirective "#\<\w\+\>" display
 
 syntax match jaiTemplate "$\<\w\+\>"
 
 syntax match jaiCommentNote "@\<\w\+\>" contained display
 syntax match jaiLineComment "//.*" contains=jaiCommentNote
 syntax region jaiBlockComment start=/\v\/\*/ end=/\v\*\// contains=jaiBlockComment, jaiCommentNote
+" Maybe scan back to find the beginning of block comments?
+" syntax sync minlines=500
+
 
 highlight link jaiIt Keyword
 highlight link jaiUsing Keyword
@@ -90,9 +94,10 @@ highlight link jaiStruct Structure
 highlight link jaiEnum Structure
 
 highlight link jaiFunction Function
-highlight link jaiDynamicFunction Function
+highlight link jaiVariableDeclaration Identifier
+highlight link jaiConstantDeclaration Constant
 
-highlight link jaiMacro Macro
+highlight link jaiDirective PreProc
 highlight link jaiIf Conditional
 highlight link jaiIfx Conditional
 highlight link jaiThen Conditional
