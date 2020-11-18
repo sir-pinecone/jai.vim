@@ -21,7 +21,19 @@ function! FindJaiEntrypoint(filename)
 	endif
 endfunction
 
-let &l:makeprg="jaic_vim -no_color " . FindJaiEntrypoint(expand('%'))
+function! FindJaiCompiler()
+	if exists("g:jai_compiler")
+		return g:jai_compiler
+	else
+		if has("win64") || has("win32") || has("win16")
+			return "jai.exe"
+		else
+			return "jai-linux"
+		endif
+	endif
+endfunction
+
+let &l:makeprg=FindJaiCompiler() . " -no_color " . FindJaiEntrypoint(expand('%'))
 
 let s:cpo_save = &cpo
 set cpo-=C
