@@ -19,12 +19,10 @@ set includeexpr=FindJaiModule(v:fname)
 setlocal commentstring=//\ %s
 
 syntax keyword jaiUsing using
-syntax keyword jaiNew new
-syntax keyword jaiDelete delete
 syntax keyword jaiCast cast
 
 syntax keyword jaiStruct struct
-syntax keyword jaiEnum enum
+syntax keyword jaiEnum enum enum_flags
 
 syntax keyword jaiIf if
 syntax keyword jaiIfx ifx
@@ -46,7 +44,7 @@ syntax keyword jaiNoInline no_inline
 syntax keyword jaiSOA SOA
 syntax keyword jaiAOS AOS
 
-syntax keyword jaiIt it
+syntax keyword jaiIt it it_index
 
 syntax region jaiString start=/\v"/ skip=/\v\\./ end=/\v"/
 
@@ -77,12 +75,10 @@ syntax region jaiBlockComment start=/\v\/\*/ end=/\v\*\// contains=jaiBlockComme
 " syntax sync minlines=500
 
 
-highlight link jaiIt Keyword
+highlight link jaiIt Identifier
 highlight link jaiUsing Keyword
-highlight link jaiNew Keyword
 highlight link jaiCast Keyword
 highlight link jaiAutoCast Keyword
-highlight link jaiDelete Keyword
 highlight link jaiReturn Keyword
 highlight link jaiDefer Operator
 
