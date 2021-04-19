@@ -28,6 +28,7 @@ syntax keyword jaiIf if
 syntax keyword jaiIfx ifx
 syntax keyword jaiThen then
 syntax keyword jaiElse else
+syntax keyword jaiCase case
 syntax keyword jaiFor for
 syntax keyword jaiWhile while
 
@@ -67,6 +68,7 @@ syntax match jaiHex "\<0x[0-9A-Fa-f]\+\>" display
 syntax match jaiDirective "#\<\w\+\>" display
 
 syntax match jaiTemplate "$\<\w\+\>"
+syntax match jaiAutobake "$$\<\w\+\>"
 
 syntax match jaiCommentNote "@\<\w\+\>" contained display
 syntax match jaiLineComment "//.*" contains=jaiCommentNote
@@ -99,6 +101,7 @@ highlight link jaiIf Conditional
 highlight link jaiIfx Conditional
 highlight link jaiThen Conditional
 highlight link jaiElse Conditional
+highlight link jaiCase Conditional
 highlight link jaiFor Repeat
 highlight link jaiWhile Repeat
 
@@ -109,6 +112,7 @@ highlight link jaiCommentNote Todo
 highlight link jaiClass Type
 
 highlight link jaiTemplate Constant
+highlight link jaiAutobake Constant
 
 highlight link jaiTagNote Identifier
 highlight link jaiDataType Type
