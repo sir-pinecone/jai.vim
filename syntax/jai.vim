@@ -22,6 +22,7 @@ syntax keyword jaiUsing using
 syntax keyword jaiCast cast
 
 syntax keyword jaiStruct struct
+syntax keyword jaiUnion union
 syntax keyword jaiEnum enum enum_flags
 
 syntax keyword jaiIf if
@@ -30,6 +31,9 @@ syntax keyword jaiThen then
 syntax keyword jaiElse else
 syntax keyword jaiCase case
 syntax keyword jaiFor for
+syntax keyword jaiContinue continue
+syntax keyword jaiBreak break
+syntax keyword jaiRemove remove
 syntax keyword jaiWhile while
 
 syntax keyword jaiDataType void string int float float32 float64 u8 u16 u32 u64 s8 s16 s32 s64 bool
@@ -53,9 +57,8 @@ syntax keyword jaiAutoCast xx
 
 syntax match jaiFunction "\v<\w+>(\s*:[:=]\s*\(.*\)[^{]*\{)@="
 "The lookaheads make sure we’re not accidentally matching a function
-syntax match jaiConstantDeclaration "\v<\w+>(, <\w+>)*(\s*::\s*((\([^{]*$)|([^( \t])))@=" display
-syntax match jaiVariableDeclaration "\v<\w+>(, <\w+>)*(\s*:[^:]\s*((\([^{]*$)|([^( \t])))@=" display
-
+syntax match jaiConstantDeclaration "\v<(\w+\\{1}\s*)*(\w+\s*){1}>(,\s*<(\w+\\{1}\s+)*(\w+\s*){1}>)*(\s*::\s*((\([^{]*$)|([^( \t])))@=" display
+syntax match jaiVariableDeclaration "\v<(\w+\\{1}\s*)*(\w+\s*){1}>(,\s*<(\w+\\{1}\s+)*(\w+\s*){1}>)*(\s*:[^:]\s*((\([^{]*$)|([^( \t])))@=" display
 syntax match jaiTagNote "@\<\w\+\>" display
 
 syntax match jaiClass "\v<[A-Z]\w+>" display
@@ -90,6 +93,7 @@ highlight link jaiNoInline Keyword
 highlight link jaiString String
 
 highlight link jaiStruct Structure
+highlight link jaiUnion Structure
 highlight link jaiEnum Structure
 
 highlight link jaiFunction Function
@@ -102,6 +106,9 @@ highlight link jaiIfx Conditional
 highlight link jaiThen Conditional
 highlight link jaiElse Conditional
 highlight link jaiCase Conditional
+highlight link jaiContinue Conditional
+highlight link jaiBreak Conditional
+highlight link jaiRemove Conditional
 highlight link jaiFor Repeat
 highlight link jaiWhile Repeat
 
