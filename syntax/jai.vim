@@ -85,7 +85,7 @@ highlight link jaiUsing Keyword
 highlight link jaiCast Keyword
 highlight link jaiAutoCast Keyword
 highlight link jaiReturn Keyword
-highlight link jaiDefer Operator
+highlight link jaiDefer Keyword
 
 highlight link jaiInline Keyword
 highlight link jaiNoInline Keyword
