@@ -51,6 +51,16 @@ syntax keyword jaiAOS AOS
 
 syntax keyword jaiIt it it_index
 
+syntax keyword jaiTypeInfo size_of type_of type_info
+syntax keyword jaiInterface interface
+syntax keyword jaiIsConstant is_constant
+
+syntax keyword jaiContext context push_context
+
+syntax keyword jaiOperator operator
+
+syntax keyword jaiInitializerOf initializer_of
+
 syntax region jaiString start=/\v"/ skip=/\v\\./ end=/\v"/
 
 syntax keyword jaiAutoCast xx
@@ -66,7 +76,9 @@ syntax match jaiConstant "\v<[A-Z0-9,_]+>" display
 
 syntax match jaiInteger "\<\d\+\>" display
 syntax match jaiFloat "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\%([eE][+-]\=[0-9_]\+\)\=" display
-syntax match jaiHex "\<0x[0-9A-Fa-f]\+\>" display
+syntax match jaiHex "\<0[x\|X][0-9A-Fa-f_]\+\>" display
+syntax match jaiHexFloat "\<0[h\|H][0-9A-Fa-f_]\+\>" display
+syntax match jaiBinary "\<0[b\|B][0-1_]\+\>" display
 
 syntax match jaiDirective "#\<\w\+\>" display
 
@@ -86,6 +98,12 @@ highlight link jaiCast Keyword
 highlight link jaiAutoCast Keyword
 highlight link jaiReturn Keyword
 highlight link jaiDefer Keyword
+highlight link jaiTypeInfo Keyword
+highlight link jaiInterface Keyword
+highlight link jaiIsConstant Keyword
+highlight link jaiContext Keyword
+highlight link jaiOperator Keyword
+highlight link jaiInitializerOf Keyword
 
 highlight link jaiInline Keyword
 highlight link jaiNoInline Keyword
@@ -129,6 +147,8 @@ highlight link jaiNull Type
 highlight link jaiInteger Number
 highlight link jaiFloat Float
 highlight link jaiHex Number
+highlight link jaiHexFloat Number
+highlight link jaiBinary Number
 
 highlight link jaiSOA Keyword
 highlight link jaiAOS Keyword
