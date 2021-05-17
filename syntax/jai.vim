@@ -22,6 +22,7 @@ syntax keyword jaiUsing using
 syntax keyword jaiCast cast
 
 syntax keyword jaiStruct struct
+syntax keyword jaiUnion union
 syntax keyword jaiEnum enum enum_flags
 
 syntax keyword jaiIf if
@@ -30,6 +31,9 @@ syntax keyword jaiThen then
 syntax keyword jaiElse else
 syntax keyword jaiCase case
 syntax keyword jaiFor for
+syntax keyword jaiContinue continue
+syntax keyword jaiBreak break
+syntax keyword jaiRemove remove
 syntax keyword jaiWhile while
 
 syntax keyword jaiDataType void string int float float32 float64 u8 u16 u32 u64 s8 s16 s32 s64 bool
@@ -47,15 +51,24 @@ syntax keyword jaiAOS AOS
 
 syntax keyword jaiIt it it_index
 
+syntax keyword jaiTypeInfo size_of type_of type_info
+syntax keyword jaiInterface interface
+syntax keyword jaiIsConstant is_constant
+
+syntax keyword jaiContext context push_context
+
+syntax keyword jaiOperator operator
+
+syntax keyword jaiInitializerOf initializer_of
+
 syntax region jaiString start=/\v"/ skip=/\v\\./ end=/\v"/
 
 syntax keyword jaiAutoCast xx
 
 syntax match jaiFunction "\v<\w+>(\s*:[:=]\s*\(.*\)[^{]*\{)@="
 "The lookaheads make sure we’re not accidentally matching a function
-syntax match jaiConstantDeclaration "\v<\w+>(, <\w+>)*(\s*::\s*((\([^{]*$)|([^( \t])))@=" display
-syntax match jaiVariableDeclaration "\v<\w+>(, <\w+>)*(\s*:[^:]\s*((\([^{]*$)|([^( \t])))@=" display
-
+syntax match jaiConstantDeclaration "\v<\w+(\\\s*\w+)*>(,\s*<\w+(\\\s*\w+)*>)*(\s*::\s*((\([^{]*$)|([^( \t])))@=" display
+syntax match jaiVariableDeclaration "\v<\w+(\\\s*\w+)*>(,\s*<\w+(\\\s*\w+)*>)*(\s*:[^:]\s*((\([^{]*$)|([^( \t])))@=" display
 syntax match jaiTagNote "@\<\w\+\>" display
 
 syntax match jaiClass "\v<[A-Z]\w+>" display
@@ -63,7 +76,9 @@ syntax match jaiConstant "\v<[A-Z0-9,_]+>" display
 
 syntax match jaiInteger "\<\d\+\>" display
 syntax match jaiFloat "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\%([eE][+-]\=[0-9_]\+\)\=" display
-syntax match jaiHex "\<0x[0-9A-Fa-f]\+\>" display
+syntax match jaiHex "\<0[x\|X][0-9A-Fa-f_]\+\>" display
+syntax match jaiHexFloat "\<0[h\|H][0-9A-Fa-f_]\+\>" display
+syntax match jaiBinary "\<0[b\|B][0-1_]\+\>" display
 
 syntax match jaiDirective "#\<\w\+\>" display
 
@@ -82,7 +97,13 @@ highlight link jaiUsing Keyword
 highlight link jaiCast Keyword
 highlight link jaiAutoCast Keyword
 highlight link jaiReturn Keyword
-highlight link jaiDefer Operator
+highlight link jaiDefer Keyword
+highlight link jaiTypeInfo Keyword
+highlight link jaiInterface Keyword
+highlight link jaiIsConstant Keyword
+highlight link jaiContext Keyword
+highlight link jaiOperator Keyword
+highlight link jaiInitializerOf Keyword
 
 highlight link jaiInline Keyword
 highlight link jaiNoInline Keyword
@@ -90,6 +111,7 @@ highlight link jaiNoInline Keyword
 highlight link jaiString String
 
 highlight link jaiStruct Structure
+highlight link jaiUnion Structure
 highlight link jaiEnum Structure
 
 highlight link jaiFunction Function
@@ -102,6 +124,9 @@ highlight link jaiIfx Conditional
 highlight link jaiThen Conditional
 highlight link jaiElse Conditional
 highlight link jaiCase Conditional
+highlight link jaiContinue Keyword
+highlight link jaiBreak Keyword
+highlight link jaiRemove Keyword
 highlight link jaiFor Repeat
 highlight link jaiWhile Repeat
 
@@ -122,6 +147,8 @@ highlight link jaiNull Type
 highlight link jaiInteger Number
 highlight link jaiFloat Float
 highlight link jaiHex Number
+highlight link jaiHexFloat Number
+highlight link jaiBinary Number
 
 highlight link jaiSOA Keyword
 highlight link jaiAOS Keyword
