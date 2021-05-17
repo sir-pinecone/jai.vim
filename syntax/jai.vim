@@ -67,8 +67,8 @@ syntax keyword jaiAutoCast xx
 
 syntax match jaiFunction "\v<\w+>(\s*:[:=]\s*\(.*\)[^{]*\{)@="
 "The lookaheads make sure we’re not accidentally matching a function
-syntax match jaiConstantDeclaration "\v<(\w+\\{1}\s*)*(\w+\s*){1}>(,\s*<(\w+\\{1}\s+)*(\w+\s*){1}>)*(\s*::\s*((\([^{]*$)|([^( \t])))@=" display
-syntax match jaiVariableDeclaration "\v<(\w+\\{1}\s*)*(\w+\s*){1}>(,\s*<(\w+\\{1}\s+)*(\w+\s*){1}>)*(\s*:[^:]\s*((\([^{]*$)|([^( \t])))@=" display
+syntax match jaiConstantDeclaration "\v<\w+(\\\s*\w+)*>(,\s*<\w+(\\\s*\w+)*>)*(\s*::\s*((\([^{]*$)|([^( \t])))@=" display
+syntax match jaiVariableDeclaration "\v<\w+(\\\s*\w+)*>(,\s*<\w+(\\\s*\w+)*>)*(\s*:[^:]\s*((\([^{]*$)|([^( \t])))@=" display
 syntax match jaiTagNote "@\<\w\+\>" display
 
 syntax match jaiClass "\v<[A-Z]\w+>" display
