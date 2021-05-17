@@ -124,9 +124,9 @@ highlight link jaiIfx Conditional
 highlight link jaiThen Conditional
 highlight link jaiElse Conditional
 highlight link jaiCase Conditional
-highlight link jaiContinue Conditional
-highlight link jaiBreak Conditional
-highlight link jaiRemove Conditional
+highlight link jaiContinue Keyword
+highlight link jaiBreak Keyword
+highlight link jaiRemove Keyword
 highlight link jaiFor Repeat
 highlight link jaiWhile Repeat
 
