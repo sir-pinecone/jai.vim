@@ -19,6 +19,8 @@ set includeexpr=FindJaiModule(v:fname)
 setlocal commentstring=//\ %s
 
 syntax keyword jaiUsing using
+syntax keyword jaiNew new
+syntax keyword jaiDelete delete
 syntax keyword jaiCast cast
 
 syntax keyword jaiStruct struct
@@ -92,65 +94,68 @@ syntax region jaiBlockComment start=/\v\/\*/ end=/\v\*\// contains=jaiBlockComme
 syntax sync minlines=200
 
 
-highlight link jaiIt Identifier
-highlight link jaiUsing Keyword
-highlight link jaiCast Keyword
-highlight link jaiAutoCast Keyword
-highlight link jaiReturn Keyword
-highlight link jaiDefer Keyword
-highlight link jaiTypeInfo Keyword
-highlight link jaiInterface Keyword
-highlight link jaiIsConstant Keyword
-highlight link jaiContext Keyword
-highlight link jaiOperator Keyword
-highlight link jaiInitializerOf Keyword
+highlight def link jaiIt Identifier
+highlight def link jaiUsing Keyword
+highlight def link jaiNew Keyword
+highlight def link jaiCast Keyword
+highlight def link jaiAutoCast Keyword
+highlight def link jaiDelete Keyword
+highlight def link jaiReturn Keyword
+highlight def link jaiDefer Keyword
+highlight def link jaiTypeInfo Keyword
+highlight def link jaiInterface Keyword
+highlight def link jaiIsConstant Keyword
+highlight def link jaiContext Keyword
+highlight def link jaiOperator Keyword
+highlight def link jaiInitializerOf Keyword
 
-highlight link jaiInline Keyword
-highlight link jaiNoInline Keyword
+highlight def link jaiInline Keyword
+highlight def link jaiNoInline Keyword
 
-highlight link jaiString String
+highlight def link jaiString String
 
-highlight link jaiStruct Structure
-highlight link jaiUnion Structure
-highlight link jaiEnum Structure
+highlight def link jaiStruct Structure
+highlight def link jaiUnion Structure
+highlight def link jaiEnum Structure
 
-highlight link jaiFunction Function
-highlight link jaiVariableDeclaration Identifier
-highlight link jaiConstantDeclaration Constant
+highlight def link jaiFunction Function
+highlight def link jaiVariableDeclaration Identifier
+highlight def link jaiConstantDeclaration Constant
 
-highlight link jaiDirective PreProc
-highlight link jaiIf Conditional
-highlight link jaiIfx Conditional
-highlight link jaiThen Conditional
-highlight link jaiElse Conditional
-highlight link jaiCase Conditional
-highlight link jaiContinue Keyword
-highlight link jaiBreak Keyword
-highlight link jaiRemove Keyword
-highlight link jaiFor Repeat
-highlight link jaiWhile Repeat
+highlight def link jaiDirective PreProc
+highlight def link jaiIf Conditional
+highlight def link jaiIfx Conditional
+highlight def link jaiThen Conditional
+highlight def link jaiElse Conditional
+highlight def link jaiCase Conditional
+highlight def link jaiContinue Keyword
+highlight def link jaiBreak Keyword
+highlight def link jaiRemove Keyword
+highlight def link jaiFor Repeat
+highlight def link jaiWhile Repeat
 
-highlight link jaiLineComment Comment
-highlight link jaiBlockComment Comment
-highlight link jaiCommentNote Todo
+highlight def link jaiLineComment Comment
+highlight def link jaiBlockComment Comment
+highlight def link jaiCommentNote Todo
 
-highlight link jaiClass Type
+highlight def link jaiClass Type
 
-highlight link jaiTemplate Constant
-highlight link jaiAutobake Constant
+highlight def link jaiTemplate Constant
+highlight def link jaiAutobake Constant
 
-highlight link jaiTagNote Identifier
-highlight link jaiDataType Type
-highlight link jaiBool Boolean
-highlight link jaiConstant Constant
-highlight link jaiNull Type
-highlight link jaiInteger Number
-highlight link jaiFloat Float
-highlight link jaiHex Number
-highlight link jaiHexFloat Number
-highlight link jaiBinary Number
+highlight def link jaiTagNote Identifier
+highlight def link jaiDataType Type
+highlight def link jaiBool Boolean
+highlight def link jaiConstant Constant
+highlight def link jaiNull Type
+highlight def link jaiInteger Number
+highlight def link jaiFloat Float
+highlight def link jaiHex Number
+highlight def link jaiHexFloat Number
+highlight def link jaiBinary Number
 
-highlight link jaiSOA Keyword
-highlight link jaiAOS Keyword
+highlight def link jaiSOA Keyword
+highlight def link jaiAOS Keyword
+
 
 let b:current_syntax = "jai"
