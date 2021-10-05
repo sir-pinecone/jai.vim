@@ -89,7 +89,7 @@ syntax match jaiCommentNote "@\<\w\+\>" contained display
 syntax match jaiLineComment "//.*" contains=jaiCommentNote
 syntax region jaiBlockComment start=/\v\/\*/ end=/\v\*\// contains=jaiBlockComment, jaiCommentNote
 " Maybe scan back to find the beginning of block comments?
-" syntax sync minlines=500
+syntax sync minlines=200
 
 
 highlight link jaiIt Identifier
