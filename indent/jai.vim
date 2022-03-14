@@ -8,10 +8,27 @@ setlocal nolisp
 setlocal autoindent
 
 setlocal indentexpr=GetJaiIndent(v:lnum)
+setlocal indentkeys+=;
 
 if exists("*GetJaiIndent")
   finish
 endif
+
+let s:jai_indent_defaults = {
+      \ 'default': function('shiftwidth'),
+      \ 'case_labels': function('shiftwidth') }
+
+function! s:indent_value(option)
+  let Value = exists('b:jai_indent_options')
+            \ && has_key(b:jai_indent_options, a:option) ?
+            \ b:jai_indent_options[a:option] :
+            \ s:jai_indent_defaults[a:option]
+
+  if type(Value) == type(function('type'))
+    return Value()
+  endif
+  return Value
+endfunction
 
 function! GetJaiIndent(lnum)
   let prev = prevnonblank(a:lnum-1)
@@ -26,15 +43,15 @@ function! GetJaiIndent(lnum)
   let ind = indent(prev)
 
   if prevline =~ '[({]\s*$'
-    let ind += &sw
-  endif
-
-  if prevline =~ 'case\s*\S*;'
-    let ind += &sw
+    let ind += s:indent_value('default')
+  elseif prevline =~ 'case\s*\S*;'
+    let ind += s:indent_value('default')
   endif
 
   if line =~ '^\s*[)}]'
-    let ind -= &sw
+    let ind -= s:indent_value('default')
+  elseif line =~ 'case\s*\S*;'
+    let ind -= s:indent_value('case_labels')
   endif
 
   return ind
