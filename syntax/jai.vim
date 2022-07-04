@@ -19,8 +19,6 @@ set includeexpr=FindJaiModule(v:fname)
 setlocal commentstring=//\ %s
 
 syntax keyword jaiUsing using
-syntax keyword jaiNew new
-syntax keyword jaiDelete delete
 syntax keyword jaiCast cast
 
 syntax keyword jaiStruct struct
