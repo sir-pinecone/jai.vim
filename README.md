@@ -1,10 +1,14 @@
 # Jai.vim
 
-Syntax highlighting for [Jonathan Blow's](https://twitter.com/jonathan_blow) programming language **Jai**
+Syntax highlighting for [Jonathan Blow's](https://twitter.com/j_blow) programming language **Jai**.
 
-<p align="center">
-  <img width="700" height="393" src="https://upx.cz/2gE"/>
-</p>
+## Configuration
+
+By default, case labels are indented. If you don't want that, you can disable it:
+```
+let b:jai_indent_options = {'case_labels':0}
+```
+
 
 ## Installation
 
