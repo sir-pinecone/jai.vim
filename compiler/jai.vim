@@ -33,7 +33,26 @@ function! FindJaiCompiler()
 	endif
 endfunction
 
-let &l:makeprg=FindJaiCompiler() . " -no_color " . FindJaiEntrypoint(expand('%'))
+function! FindJaiModules()
+	if exists("g:jai_local_modules")
+		return " -import_dir " . g:jai_local_modules
+	else 
+        let modules_dir = getcwd() . '/modules'
+		if isdirectory(modules_dir)
+			return " -import_dir " . modules_dir
+		else
+            let local_modules_dir = 'Local_Modules'
+            if isdirectory(local_modules_dir)
+                return " -import_dir " . local_modules_dir
+            else
+                return ""
+            endif
+		endif
+	endif
+endfunction
+
+
+let &l:makeprg=FindJaiCompiler() . " -no_color " . FindJaiEntrypoint(expand('%')) . FindJaiModules()
 
 let s:cpo_save = &cpo
 set cpo-=C
