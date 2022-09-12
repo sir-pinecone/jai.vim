@@ -9,14 +9,19 @@ endif
 let current_compiler="jai"
 
 function! FindJaiEntrypoint(filename)
-	let buildfile = 'build.jai'
+	let buildfile = 'first.jai'
+	let buildfile2 = 'build.jai'
 	if exists("g:jai_entrypoint")
 		return g:jai_entrypoint
 	else 
 		if filereadable(buildfile)
 			return buildfile
 		else
-			return a:filename
+            if filereadable(buildfile2)
+                return buildfile2
+            else 
+                return a:filename
+            endif
 		endif
 	endif
 endfunction
