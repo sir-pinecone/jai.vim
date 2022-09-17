@@ -66,9 +66,10 @@ syntax region jaiString start=/\v"/ skip=/\v\\./ end=/\v"/
 syntax keyword jaiAutoCast xx
 
 syntax match jaiFunction "\v<\w+>(\_\s*:[:=]\_\s*(inline)?\_\s*\(\_.*\)\_.{-}\{)@="
-"The lookaheads make sure we’re not accidentally matching a function
+"The lookahead prevents accidental matches with a function
 syntax match jaiConstantDeclaration "\v<\w+(\\\s*\w+)*>(,\s*<\w+(\\\s*\w+)*>)*(\s*:\s*\w*\s*:\s*((\([^{]*$)|([^( \t])))@=" display
-syntax match jaiVariableDeclaration "\v<\w+(\\\s*\w+)*>(,\s*<\w+(\\\s*\w+)*>)*(\s*:[^:]\s*((\([^{]*$)|([^( \t])))@=" display
+"The lookahead prevents accidental matches with a constant declaration or a function
+syntax match jaiVariableDeclaration "\v<\w+(\\\s*\w+)*>(,\s*<\w+(\\\s*\w+)*>)*(\s*:(\s*\w*\s*:)@!\s*((\([^{]*$)|([^( \t])))@=" display
 syntax match jaiTagNote "@\<\w\+\>" display
 
 syntax match jaiClass "\v<[A-Z]\w+>" display
