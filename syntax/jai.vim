@@ -67,9 +67,9 @@ syntax keyword jaiAutoCast xx
 
 syntax match jaiFunction "\v<\h\w*>\ze\_s*:[:=]\_s*(inline)?\_s*\((\.\{|\_[^\{;]){-}\)(\.\{|\_[^{;])*\{"
 "The lookahead prevents accidental matches with a function
-syntax match jaiConstantDeclaration "\v<\h\w*(\\\s*\w+)*>\ze(,\_s*<\h\w*(\\\s*\w+)*>)*\_s*:\_[^{;:=]{-}:(\.\{|\_[^{;:])*;" display
+syntax match jaiConstantDeclaration "\v<\h\w*(\\\s*\w+)*>\ze(,\_s*<\h\w*(\\\s*\w+)*>)*\_s*:\_[^{;:="]{-}:(\.\{|\_[^{;:])*;" display
 "The lookahead prevents accidental matches with a constant declaration or a function
-syntax match jaiVariableDeclaration "\v<\h\w*(\\\s*\w+)*>\ze(,\_s*<\h\w*(\\\s*\w+)*>)*\_s*:\_s*((\h|[$*\[])\_[^{;:=\"]{-})?(\=(\.\{|\_[^{;:])*)?[;,){]" display
+syntax match jaiVariableDeclaration "\v<\h\w*(\\\s*\w+)*>\ze(,\_s*<\h\w*(\\\s*\w+)*>)*\_s*:\_s*((\h|[$*\[])\_[^{;:="]{-})?(\=(\.\{|\_[^{;:])*)?[;,){]" display
 syntax match jaiTagNote "@\<\w\+\>" display
 
 syntax match jaiClass "\v<[A-Z]\w+>" display
