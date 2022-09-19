@@ -65,10 +65,12 @@ syntax region jaiString start=/\v"/ skip=/\v\\./ end=/\v"/
 
 syntax keyword jaiAutoCast xx
 
-syntax match jaiFunction "\v<\w+>(\s*:[:=]\s*(inline)?\s*\(.*\)[^{]*\{)@="
-"The lookaheads make sure we’re not accidentally matching a function
-syntax match jaiConstantDeclaration "\v<\w+(\\\s*\w+)*>(,\s*<\w+(\\\s*\w+)*>)*(\s*::\s*((\([^{]*$)|([^( \t])))@=" display
-syntax match jaiVariableDeclaration "\v<\w+(\\\s*\w+)*>(,\s*<\w+(\\\s*\w+)*>)*(\s*:[^:]\s*((\([^{]*$)|([^( \t])))@=" display
+syntax match jaiFunction "\v<\h\w*>\ze\_s*:[:=]%(\_s*inline)?\_s*\(%(\.\{|\_[^\{;]){-}\)%(\.\{|\_[^{;])*\{"
+"The lookahead prevents accidental matches with a function
+syntax match jaiConstantDeclaration "\v<\h\w*%(\\\s*\w+)*>\ze%(,\_s*<\h\w*%(\\\s*\w+)*>)*\_s*:\_[^{;:="]{-}:%(\.\{|\_[^{;:])*;" display
+"The lookahead prevents accidental matches with a constant declaration or a function
+syntax match jaiVariableDeclaration "\v%(%([:\]$]|for%(\_s*\<)?)\_s*)@<!<\h\w*%(\\\s*\w+)*>\ze%(,\_s*<\h\w*%(\\\s*\w+)*>)*\_s*:\_[^:=,"]{-}[=,);]" display
+syntax match jaiForVariableDeclaration "\v%(for%(\_s*\<)?%(\_s*<\h\w*%(\\\s*\w+)*>,)*\_s*)@<=<\h\w*%(\\\s*\w+)*>\ze%(,\_s*<\h\w*%(\\\s*\w+)*>)*\_s*:" display
 syntax match jaiTagNote "@\<\w\+\>" display
 
 syntax match jaiClass "\v<[A-Z]\w+>" display
@@ -118,6 +120,7 @@ highlight def link jaiEnum Structure
 
 highlight def link jaiFunction Function
 highlight def link jaiVariableDeclaration Identifier
+highlight def link jaiForVariableDeclaration Identifier
 highlight def link jaiConstantDeclaration Constant
 
 highlight def link jaiDirective PreProc
