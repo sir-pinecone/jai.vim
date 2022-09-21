@@ -61,8 +61,6 @@ syntax keyword jaiOperator operator
 
 syntax keyword jaiInitializerOf initializer_of
 
-syntax region jaiString start=/\v"/ skip=/\v\\./ end=/\v"/
-
 syntax keyword jaiAutoCast xx
 
 syntax match jaiFunction "\v<\h\w*>\ze\_s*:[:=]%(\_s*inline)?\_s*\(%(\.\{|\_[^\{;]){-}\)%(\.\{|\_[^{;])*\{"
@@ -84,8 +82,11 @@ syntax match jaiBinary "\<0[b\|B][0-1_]\+\>" display
 
 syntax match jaiDirective "#\<\w\+\>" display
 
-syntax match jaiTemplate "$\<\w\+\>"
-syntax match jaiAutobake "$$\<\w\+\>"
+syntax region jaiString start=/\v"/ skip=/\v\\./ end=/\v"/ display
+syntax region jaiHereString matchgroup=jaiDirective start=/\v#string\s*\z(<\w+>)/ end=/\v^\s*\z1/
+
+syntax match jaiTemplate "$\<\w\+\>" display
+syntax match jaiAutobake "$$\<\w\+\>" display
 
 syntax match jaiCommentNote "@\<\w\+\>" contained display
 syntax match jaiLineComment "//.*" contains=jaiCommentNote
@@ -113,6 +114,7 @@ highlight def link jaiInline Keyword
 highlight def link jaiNoInline Keyword
 
 highlight def link jaiString String
+highlight def link jaiHereString String
 
 highlight def link jaiStruct Structure
 highlight def link jaiUnion Structure
