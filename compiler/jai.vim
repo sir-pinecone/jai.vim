@@ -56,8 +56,11 @@ function! FindJaiModules()
 	endif
 endfunction
 
+function! UpdateJaiMakeprg() 
+    let &l:makeprg=FindJaiCompiler() . " -no_color -quiet " . FindJaiEntrypoint(expand('%')) . FindJaiModules()
+endfunction
 
-let &l:makeprg=FindJaiCompiler() . " -no_color " . FindJaiEntrypoint(expand('%')) . FindJaiModules()
+call UpdateJaiMakeprg()
 
 let s:cpo_save = &cpo
 set cpo-=C
