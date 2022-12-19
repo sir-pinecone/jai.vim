@@ -83,7 +83,7 @@ syntax match jaiBinary "\<0[b\|B][0-1_]\+\>" display
 syntax match jaiDirective "#\<\w\+\>" display
 
 syntax region jaiString start=/\v"/ skip=/\v\\./ end=/\v"/ display
-syntax region jaiHereString matchgroup=jaiDirective start=/\v#string\s*\z(<\w+>)/ end=/\v^\s*\z1/
+syntax region jaiHereString matchgroup=jaiDirective start=/\v#string\s*(,\s*cr\s*)?\z(<\w+>)/ end=/\v^\s*\z1/
 
 syntax match jaiTemplate "$\<\w\+\>" display
 syntax match jaiAutobake "$$\<\w\+\>" display
