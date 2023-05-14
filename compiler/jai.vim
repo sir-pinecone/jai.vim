@@ -56,8 +56,12 @@ function! FindJaiModules()
 	endif
 endfunction
 
-function! UpdateJaiMakeprg() 
-    let &l:makeprg=FindJaiCompiler() . " -no_color -quiet " . FindJaiEntrypoint(expand('%')) . FindJaiModules()
+function! GetJaiMakeprg()
+    return FindJaiCompiler() . " -no_color -quiet " . FindJaiEntrypoint(expand('%')) . FindJaiModules()
+endfunction
+
+function! UpdateJaiMakeprg()
+    let &l:makeprg=GetJaiMakeprg()
 endfunction
 
 call UpdateJaiMakeprg()
@@ -69,7 +73,7 @@ CompilerSet errorformat=
 	\%f:%l\\,%c:\ Error:\ %m,
 	\%f:%l\\,%c:\ %m,
 	\%m\ (%f:%l),
-
+execute "CompilerSet makeprg=" . escape(GetJaiMakeprg(), ' ')
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
