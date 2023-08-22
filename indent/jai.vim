@@ -30,6 +30,18 @@ function! s:indent_value(option)
     return Value
 endfunction
 
+function! s:strip_comment(line)
+    let comment_start = stridx(a:line, '//')
+    if comment_start == -1
+        return a:line
+    endif 
+    if comment_start == 0
+        return ''
+    endif 
+
+    return a:line[0:comment_start-1]
+endfunction
+
 function! GetJaiIndent(lnum)
     let prev = prevnonblank(a:lnum-1)
 
@@ -37,12 +49,13 @@ function! GetJaiIndent(lnum)
         return 0
     endif
 
-    let prevline = getline(prev)
-    let line = getline(a:lnum)
+    let prevline = s:strip_comment(getline(prev))
+    " echom "Prevline at" prev "was#" getline(prev) "#and is#" prevline "#"
+    let line = s:strip_comment(getline(a:lnum))
 
     let ind = indent(prev)
 
-    if prevline =~ '[({]\s*$'
+    if prevline =~ '\v[\(\{\[]\s*$'
         let ind += s:indent_value('default')
         if line =~ 'case\s*\S*;'
             let ind += s:indent_value('case_labels')
@@ -51,7 +64,7 @@ function! GetJaiIndent(lnum)
         let ind += s:indent_value('default')
     endif
 
-    if line =~ '^\s*[)}]'
+    if line =~ '\v^\s*[\)\}\]]'
         let ind -= s:indent_value('default')
 
         " Find corresponding opening line and check if it’s an if/case
