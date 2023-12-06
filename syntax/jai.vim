@@ -69,7 +69,6 @@ syntax match jaiConstantDeclaration "\v<\h\w*%(\\\s*\w+)*>\ze%(,\_s*<\h\w*%(\\\s
 "The lookahead prevents accidental matches with a constant declaration or a function
 syntax match jaiVariableDeclaration "\v%(%([:\]$]|for%(\_s*\<)?)\_s*)@<!<\h\w*%(\\\s*\w+)*>\ze%(,\_s*<\h\w*%(\\\s*\w+)*>)*\_s*:\_[^:=,"]{-}[=,);]" display
 syntax match jaiForVariableDeclaration "\v%(for%(\_s*\<)?%(\_s*<\h\w*%(\\\s*\w+)*>,)*\_s*)@<=<\h\w*%(\\\s*\w+)*>\ze%(,\_s*<\h\w*%(\\\s*\w+)*>)*\_s*:" display
-syntax match jaiTagNote "@\<\w\+\>" display
 
 syntax match jaiClass "\v<[A-Z]\w+>" display
 syntax match jaiConstant "\v<[A-Z0-9,_]+>" display
@@ -88,9 +87,8 @@ syntax region jaiHereString matchgroup=jaiDirective start=/\v#string\s*(,\s*cr\s
 syntax match jaiTemplate "$\<\w\+\>" display
 syntax match jaiAutobake "$$\<\w\+\>" display
 
-syntax match jaiCommentNote "@\<\w\+\>" contained display
-syntax match jaiLineComment "//.*" contains=jaiCommentNote
-syntax region jaiBlockComment start=/\v\/\*/ end=/\v\*\// contains=jaiBlockComment, jaiCommentNote
+syntax match jaiLineComment "//.*"
+syntax region jaiBlockComment start=/\v\/\*/ end=/\v\*\// contains=jaiBlockComment
 " Maybe scan back to find the beginning of block comments?
 syntax sync minlines=200
 
@@ -139,14 +137,12 @@ highlight def link jaiWhile Repeat
 
 highlight def link jaiLineComment Comment
 highlight def link jaiBlockComment Comment
-highlight def link jaiCommentNote Todo
 
 highlight def link jaiClass Type
 
 highlight def link jaiTemplate Constant
 highlight def link jaiAutobake Constant
 
-highlight def link jaiTagNote Identifier
 highlight def link jaiDataType Type
 highlight def link jaiBool Boolean
 highlight def link jaiConstant Constant
